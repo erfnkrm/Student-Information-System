@@ -1,34 +1,38 @@
 
-version: '3.8'
-
-services:
-  
+services:  
   db: 
     image: postgres:latest
-    container_name: ers-db
     environment:
-      POSTGRES_USER: admin           
-      POSTGRES_PASSWORD: Ers-Root@123 
-      POSTGRES_DB: ers_db            
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: sis_db
+      POSTGRES_USER: sis_user
+      POSTGRES_PASSWORD: sis_pass        
+    
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
-      - ers-network
+      - sis_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
-  
   app:
-    build: .                      
-    container_name: ers-app
+    build: .
     depends_on:
-      - db                        
+      db:
+        condition: service_healthy
+    environment:
+      PG_CONN: "host=db port=5432 dbname=sis_db user=sis_user password=sis_pass"
     networks:
-      - ers-network
-    tty: true                     
+      - sis_net
+    stdin_open: true
+    tty: true
 
 volumes:
   db_data:
 
 networks:
-  ers-network:
+  sis_net:
+    driver: bridge
