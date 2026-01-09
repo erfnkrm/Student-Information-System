@@ -73,7 +73,16 @@ cd cpp-finalproject-ERS
 
 ### 3. Build and Run
 
-#### Using Docker
+#### Docker Compose V2 (recommended)
+```bash
+# Start database in background
+docker compose up db -d
+
+# Run the application
+docker compose run --rm app
+```
+
+#### Docker Compose V1 (legacy)
 ```bash
 # Start database in background
 docker-compose up db -d
@@ -140,7 +149,10 @@ podman machine start
 ### Issue: Database fails to start (PostgreSQL version mismatch)
 If you previously used an older PostgreSQL version, you may need to reset the volume:
 ```bash
-# Docker
+# Docker Compose V2
+docker compose down -v
+
+# Docker Compose V1
 docker-compose down -v
 
 # Podman
@@ -149,8 +161,9 @@ podman-compose down -v
 
 Then start again:
 ```bash
-docker-compose up db -d  # Docker
-podman-compose up db -d  # Podman
+docker compose up db -d      # Docker V2
+docker-compose up db -d      # Docker V1
+podman-compose up db -d      # Podman
 ```
 
 ### Issue: Build errors (CMake not found)
@@ -158,6 +171,12 @@ The Docker/Podman container handles all dependencies. Ensure:
 1. Your Dockerfile is in the project root
 2. You're running from the project root directory
 3. The build process completes without errors
+4. Rebuild from scratch if needed:
+   ```bash
+   docker compose build --no-cache app      # Docker V2
+   docker-compose build --no-cache app      # Docker V1
+   podman-compose build --no-cache app      # Podman
+   ```
 
 ### Issue: Port 5432 already in use
 Another PostgreSQL instance is running. Either:

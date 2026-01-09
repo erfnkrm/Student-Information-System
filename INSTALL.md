@@ -32,12 +32,17 @@ Choose one of the following container runtimes:
 
 2. **Start the database:**
    
-   **Using Docker:**
+   **Docker Compose V2 (recommended):**
+   ```bash
+   docker compose up db -d
+   ```
+   
+   **Docker Compose V1 (legacy):**
    ```bash
    docker-compose up db -d
    ```
    
-   **Using Podman:**
+   **Podman:**
    ```bash
    podman-compose up db -d
    # OR
@@ -46,12 +51,17 @@ Choose one of the following container runtimes:
 
 3. **Run the application:**
    
-   **Using Docker:**
+   **Docker Compose V2:**
+   ```bash
+   docker compose run --rm app
+   ```
+   
+   **Docker Compose V1:**
    ```bash
    docker-compose run --rm app
    ```
    
-   **Using Podman:**
+   **Podman:**
    ```bash
    podman-compose run --rm app
    # OR

@@ -65,12 +65,18 @@ The system uses the following default credentials in `docker-compose.yml`:
 ## Running the Project
 
 ### Using Docker
-1. Ensure Docker is running.
-2. Build and start the system:
-   ```bash
-   docker-compose up db -d
-   docker-compose run --rm app
-   ```
+
+**Option 1: Docker Compose V2 (recommended)**
+```bash
+docker compose up db -d
+docker compose run --rm app
+```
+
+**Option 2: Docker Compose V1 (legacy)**
+```bash
+docker-compose up db -d
+docker-compose run --rm app
+```
 
 ### Using Podman
 1. **macOS:** Start Podman machine: `podman machine start`
