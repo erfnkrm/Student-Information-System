@@ -22,13 +22,13 @@ std::string now_iso8601() {
   return oss.str();
 }
 
-void emit(const char* level, const std::string& msg) {
+void emit(const char *level, const std::string &msg) {
   std::cerr << now_iso8601() << " [" << level << "] " << msg << "\n";
 }
-}  // namespace
+} // namespace
 
-namespace log {
-void info(const std::string& msg) { emit("INFO", msg); }
-void warn(const std::string& msg) { emit("WARN", msg); }
-void error(const std::string& msg) { emit("ERROR", msg); }
-}  // namespace log
+namespace logging {
+void info(const std::string &msg) { emit("INFO", msg); }
+void warn(const std::string &msg) { emit("WARN", msg); }
+void error(const std::string &msg) { emit("ERROR", msg); }
+} // namespace logging

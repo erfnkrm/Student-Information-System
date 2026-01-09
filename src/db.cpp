@@ -10,26 +10,29 @@ Database::Database(std::string conninfo) : conninfo_(std::move(conninfo)) {
 }
 
 void Database::reconnect_if_needed() {
-  if (conn_ && conn_->is_open()) return;
+  if (conn_ && conn_->is_open())
+    return;
 
   conn_ = std::make_unique<pqxx::connection>(conninfo_);
   if (!conn_->is_open()) {
     throw std::runtime_error("Failed to open PostgreSQL connection.");
   }
-  log::info("Connected to PostgreSQL.");
+  logging::info("Connected to PostgreSQL.");
 }
 
-void Database::insert_student(const Student& s) {
+void Database::insert_student(const Student &s) {
   const auto err = validate_student(s);
-  if (!err.empty()) throw std::invalid_argument(err);
+  if (!err.empty())
+    throw std::invalid_argument(err);
 
   reconnect_if_needed();
   pqxx::work tx{*conn_};
 
-  tx.exec_params(
-      "INSERT INTO students (student_id, first_name, last_name, department, email) "
-      "VALUES ($1, $2, $3, $4, $5)",
-      s.student_id, s.first_name, s.last_name, s.department, s.email);
+  tx.exec_params("INSERT INTO students (student_id, first_name, last_name, "
+                 "department, email) "
+                 "VALUES ($1, $2, $3, $4, $5)",
+                 s.student_id, s.first_name, s.last_name, s.department,
+                 s.email);
 
   tx.commit();
 }
@@ -45,7 +48,7 @@ std::vector<Student> Database::list_students() {
   std::vector<Student> out;
   out.reserve(static_cast<size_t>(r.size()));
 
-  for (const auto& row : r) {
+  for (const auto &row : r) {
     Student s;
     s.student_id = row["student_id"].as<int>();
     s.first_name = row["first_name"].c_str();
@@ -57,9 +60,10 @@ std::vector<Student> Database::list_students() {
   return out;
 }
 
-void Database::update_student(const Student& s) {
+void Database::update_student(const Student &s) {
   const auto err = validate_student(s);
-  if (!err.empty()) throw std::invalid_argument(err);
+  if (!err.empty())
+    throw std::invalid_argument(err);
 
   reconnect_if_needed();
   pqxx::work tx{*conn_};
@@ -79,7 +83,8 @@ void Database::update_student(const Student& s) {
 }
 
 void Database::delete_student(int student_id) {
-  if (student_id <= 0) throw std::invalid_argument("Student ID must be positive.");
+  if (student_id <= 0)
+    throw std::invalid_argument("Student ID must be positive.");
 
   reconnect_if_needed();
   pqxx::work tx{*conn_};
@@ -94,4 +99,3 @@ void Database::delete_student(int student_id) {
 
   tx.commit();
 }
-
