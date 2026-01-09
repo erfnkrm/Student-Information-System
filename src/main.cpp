@@ -96,8 +96,9 @@ int main() {
       std::cout << "\n=== Student Information System ===\n"
                    "1) Add student\n"
                    "2) List students\n"
-                   "3) Update student\n"
-                   "4) Delete student\n"
+                   "3) Find student\n"
+                   "4) Update student\n"
+                   "5) Delete student\n"
                    "0) Exit\n";
 
       const int choice = read_int("Select: ");
@@ -117,6 +118,14 @@ int main() {
         } else if (choice == 2) {
           print_students(db.list_students());
         } else if (choice == 3) {
+          const int id = read_int("Student ID to find: ");
+          Student s = db.find_student(id);
+          std::cout << "\n--- Found Student ---\n"
+                    << "ID: " << s.student_id << "\n"
+                    << "  Name: " << s.first_name << " " << s.last_name << "\n"
+                    << "  Department: " << s.department << "\n"
+                    << "  Email: " << s.email << "\n\n";
+        } else if (choice == 4) {
           Student s = read_student_from_user(true);
           const auto err = validate_student(s);
           if (!err.empty()) {
@@ -125,7 +134,7 @@ int main() {
           }
           db.update_student(s);
           std::cout << "Updated.\n";
-        } else if (choice == 4) {
+        } else if (choice == 5) {
           const int id = read_int("Student ID to delete: ");
           db.delete_student(id);
           std::cout << "Deleted.\n";
