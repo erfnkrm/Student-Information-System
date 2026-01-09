@@ -1,4 +1,3 @@
-
 services:  
   db: 
     image: postgres:latest
@@ -8,7 +7,7 @@ services:
       POSTGRES_PASSWORD: sis_pass        
     
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - sis_net

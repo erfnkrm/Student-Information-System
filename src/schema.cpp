@@ -39,5 +39,5 @@ void Database::ensure_schema() {
     END $$;
   )SQL");
   tx.commit();
-  log::info("Database schema ensured.");
+  logging::info("Database schema ensured.");
 }
