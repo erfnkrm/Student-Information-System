@@ -37,6 +37,31 @@ void Database::insert_student(const Student &s) {
   tx.commit();
 }
 
+Student Database::find_student(int student_id) {
+  if (student_id <= 0)
+    throw std::invalid_argument("Student ID must be positive.");
+
+  reconnect_if_needed();
+  pqxx::read_transaction tx{*conn_};
+
+  pqxx::result r = tx.exec_params(
+      "SELECT student_id, first_name, last_name, department, email "
+      "FROM students WHERE student_id=$1",
+      student_id);
+
+  if (r.empty()) {
+    throw std::runtime_error("No student found with that ID.");
+  }
+
+  Student s;
+  s.student_id = r[0]["student_id"].as<int>();
+  s.first_name = r[0]["first_name"].c_str();
+  s.last_name = r[0]["last_name"].c_str();
+  s.department = r[0]["department"].c_str();
+  s.email = r[0]["email"].c_str();
+  return s;
+}
+
 std::vector<Student> Database::list_students() {
   reconnect_if_needed();
   pqxx::read_transaction tx{*conn_};
