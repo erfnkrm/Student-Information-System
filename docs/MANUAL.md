@@ -23,6 +23,17 @@ cd cpp-finalproject-ERS
 ### 3.2 Start the Application
 
 #### Using Docker
+
+**Docker Compose V2 (recommended):**
+```bash
+# Start database
+docker compose up db -d
+
+# Run application
+docker compose run --rm app
+```
+
+**Docker Compose V1 (legacy):**
 ```bash
 # Start database
 docker-compose up db -d
@@ -174,13 +185,14 @@ If the application says "Could not connect to DB after retries":
 
 1. **Check if database container is running:**
    ```bash
-   docker ps      # Docker
-   podman ps      # Podman
+   docker ps          # Docker
+   podman ps          # Podman
    ```
 
 2. **Check database logs:**
    ```bash
-   docker-compose logs db      # Docker
+   docker compose logs db      # Docker V2
+   docker-compose logs db      # Docker V1
    podman-compose logs db      # Podman
    ```
 
@@ -200,7 +212,8 @@ podman machine start
 ### Database Version Compatibility
 If upgrading PostgreSQL versions, you may need to reset the database:
 ```bash
-docker-compose down -v      # Docker
+docker compose down -v      # Docker V2
+docker-compose down -v      # Docker V1
 podman-compose down -v      # Podman
 ```
 
@@ -210,7 +223,8 @@ If build fails:
 2. Check that `Dockerfile` and `CMakeLists.txt` exist
 3. Rebuild from scratch:
    ```bash
-   docker-compose build --no-cache app      # Docker
+   docker compose build --no-cache app      # Docker V2
+   docker-compose build --no-cache app      # Docker V1
    podman-compose build --no-cache app      # Podman
    ```
 
@@ -220,13 +234,15 @@ If build fails:
 
 ### Stop Containers
 ```bash
-docker-compose down      # Docker
+docker compose down      # Docker V2
+docker-compose down      # Docker V1
 podman-compose down      # Podman
 ```
 
 ### Stop and Remove All Data
 ```bash
-docker-compose down -v      # Docker (removes volumes)
+docker compose down -v      # Docker V2 (removes volumes)
+docker-compose down -v      # Docker V1 (removes volumes)
 podman-compose down -v      # Podman (removes volumes)
 ```
 

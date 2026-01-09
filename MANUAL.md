@@ -5,6 +5,13 @@
 ### Using Docker
 Run the database first, then the application:
 
+**Docker Compose V2 (recommended):**
+```bash
+docker compose up db -d
+docker compose run --rm app
+```
+
+**Docker Compose V1 (legacy):**
 ```bash
 docker-compose up db -d
 docker-compose run --rm app
@@ -87,18 +94,24 @@ The app will open an interactive CLI menu.
 
 To stop the database and clean up:
 
-**Using Docker:**
+**Docker Compose V2:**
+```bash
+docker compose down
+```
+
+**Docker Compose V1:**
 ```bash
 docker-compose down
 ```
 
-**Using Podman:**
+**Podman:**
 ```bash
 podman-compose down
 ```
 
 To also remove all data:
 ```bash
-docker-compose down -v  # Docker
-podman-compose down -v  # Podman
+docker compose down -v      # Docker V2
+docker-compose down -v      # Docker V1
+podman-compose down -v      # Podman
 ```
