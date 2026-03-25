@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information System - Project Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .presentation {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 10px;
+            padding: 60px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            page-break-after: always;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .slide h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .slide h2 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .slide h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .slide p, .slide li {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .slide ul, .slide ol {
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .slide code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+        
+        .slide pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 1em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        
+        .team-member {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .architecture-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 1em;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .slide {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide">
+            <h1>Student Information System</h1>
+            <p class="subtitle">A Distributed C++ Application with PostgreSQL</p>
+            <p class="center" style="margin-top: 40px; font-size: 1.3em;">System Programming Course Final Project</p>
+            <p class="center" style="color: #666;">Fenerbahçe University</p>
+            <p class="center" style="color: #666;">Instructor: Osman Selvi</p>
+            <p class="center" style="margin-top: 30px; font-style: italic;">Team ERS</p>
+        </div>
+        
+        <!-- Slide 2: Team Members -->
+        <div class="slide">
+            <h2>Team Members & Roles</h2>
+            <div class="team-member">
+                <h3>👨‍💼 Erfan Karimi - Project Manager</h3>
+                <p>GitHub management, reporting, documentation, and project coordination</p>
+            </div>
+            <div class="team-member">
+                <h3>🔧 Sevin Tayfehaliverdi - DevOps Engineer</h3>
+                <p>Docker infrastructure, CI/CD, container orchestration, and image management</p>
+            </div>
+            <div class="team-member">
+                <h3>💻 Rasa Darabi Purshiraz - C++ Developer</h3>
+                <p>Application logic, database connection, testing, and core development</p>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Project Objective -->
+        <div class="slide">
+            <h2>Project Objective</h2>
+            <p style="font-size: 1.4em; margin: 30px 0;">Develop a distributed <strong>Student Information System</strong> using modern technologies:</p>
+            <ul style="font-size: 1.3em;">
+                <li>🐧 <strong>Ubuntu Linux</strong> environment</li>
+                <li>📦 <strong>Docker/Podman</strong> containerization</li>
+                <li>💾 <strong>PostgreSQL</strong> database for persistence</li>
+                <li>⚡ <strong>C++</strong> application for student record management</li>
+                <li>🔄 <strong>Git/GitHub</strong> for version control</li>
+            </ul>
+            <div class="highlight" style="margin-top: 40px;">
+                <p><strong>Goal:</strong> Create a fully containerized, production-ready system with proper separation of concerns and best practices.</p>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Key Features -->
+        <div class="slide">
+            <h2>Key Features</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📝 CRUD Operations</h3>
+                    <ul>
+                        <li>Add new students</li>
+                        <li>List all students</li>
+                        <li>Find student by ID</li>
+                        <li>Update student records</li>
+                        <li>Delete student entries</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🛡️ Robust Design</h3>
+                    <ul>
+                        <li>Input validation</li>
+                        <li>Transaction management</li>
+                        <li>Error handling</li>
+                        <li>Connection retry logic</li>
+                        <li>Logging system</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Student Data:</strong> ID, First Name, Last Name, Department, Email (unique)</p>
+            </div>
+        </div>
+        
+        <!-- Slide 5: System Architecture -->
+        <div class="slide">
+            <h2>System Architecture</h2>
+            <div class="architecture-diagram">
+                <h3 style="color: #667eea;">Two-Container Architecture</h3>
+                <pre style="text-align: left; background: white; color: #333; border: 2px solid #667eea;">
+┌─────────────────────────────────────────────┐
+│          Docker/Podman Network              │
+│              (sis_net)                      │
+│                                             │
+│  ┌──────────────────┐  ┌─────────────────┐ │
+│  │  App Container   │  │  DB Container   │ │
+│  │                  │  │                 │ │
+│  │  C++ Application │─→│  PostgreSQL     │ │
+│  │   (libpqxx)      │  │   (port 5432)   │ │
+│  │                  │  │                 │ │
+│  └──────────────────┘  └─────────────────┘ │
+│                              ↓              │
+│                        ┌──────────┐         │
+│                        │  Volume  │         │
+│                        │ (db_data)│         │
+│                        └──────────┘         │
+└─────────────────────────────────────────────┘
+                </pre>
+            </div>
+            <p class="center"><strong>Communication:</strong> Private bridge network with health checks</p>
+        </div>
+        
+        <!-- Slide 6: Technology Stack -->
+        <div class="slide">
+            <h2>Technology Stack</h2>
+            <div class="center" style="margin: 40px 0;">
+                <span class="tech-badge">C++17</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">CMake</span>
+                <span class="tech-badge">libpqxx</span>
+                <span class="tech-badge">Git/GitHub</span>
+                <span class="tech-badge">Ubuntu 22.04</span>
+            </div>
+            <div class="two-column" style="margin-top: 40px;">
+                <div>
+                    <h3>Development Tools</h3>
+                    <ul>
+                        <li><strong>Language:</strong> Modern C++ (C++17)</li>
+                        <li><strong>Build System:</strong> CMake 3.16+</li>
+                        <li><strong>Database Library:</strong> libpqxx</li>
+                        <li><strong>Version Control:</strong> Git Flow</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li><strong>Container:</strong> Docker/Podman</li>
+                        <li><strong>Database:</strong> PostgreSQL (latest)</li>
+                        <li><strong>Orchestration:</strong> docker-compose</li>
+                        <li><strong>CI/CD:</strong> GitHub Actions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Docker Configuration -->
+        <div class="slide">
+            <h2>Docker Configuration</h2>
+            <h3>Multi-Stage Dockerfile</h3>
+            <pre>FROM ubuntu:22.04 AS build
+# Build stage with CMake and dependencies
+RUN apt-get install build-essential cmake libpqxx-dev
+COPY . .
+RUN cmake -B build && cmake --build build
+
+FROM ubuntu:22.04 AS runtime
+# Lightweight runtime stage
+COPY --from=build /app/build/sis /app/sis
+ENTRYPOINT ["/app/sis"]</pre>
+            <div class="highlight" style="margin-top: 20px;">
+                <p><strong>Benefits:</strong> Smaller image size, faster deployment, separation of build and runtime dependencies</p>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Application Menu -->
+        <div class="slide">
+            <h2>Interactive CLI Menu</h2>
+            <pre style="font-size: 1.2em;">
+=== Student Information System ===
+1) Add student
+2) List students
+3) Find student
+4) Update student
+5) Delete student
+0) Exit
+
+Select: _
+            </pre>
+            <div class="two-column" style="margin-top: 30px;">
+                <div>
+                    <h3>User Friendly</h3>
+                    <ul>
+                        <li>Simple numbered menu</li>
+                        <li>Clear prompts</li>
+                        <li>Input validation</li>
+                        <li>Error messages</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Robust</h3>
+                    <ul>
+                        <li>Handles invalid input</li>
+                        <li>Database transaction safety</li>
+                        <li>Connection retry logic</li>
+                        <li>Graceful error handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Development Timeline -->
+        <div class="slide">
+            <h2>4-Week Development Timeline</h2>
+            <table>
+                <tr>
+                    <th>Week</th>
+                    <th>Focus</th>
+                    <th>Key Deliverables</th>
+                </tr>
+                <tr>
+                    <td><strong>Week 1</strong><br>Dec 12-19</td>
+                    <td>Planning & Setup</td>
+                    <td>Repository, roles, folder structure, Docker research</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 2</strong><br>Dec 19-26</td>
+                    <td>Containerization</td>
+                    <td>Dockerfile, docker-compose, PostgreSQL container, CMake</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 3</strong><br>Dec 26-Jan 2</td>
+                    <td>Application Development</td>
+                    <td>libpqxx integration, database connection, CRUD operations</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 4</strong><br>Jan 2-9</td>
+                    <td>Testing & Documentation</td>
+                    <td>System testing, final docs, v1.0 release, Docker Hub push</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Slide 10: Week 1 Progress -->
+        <div class="slide">
+            <h2>Week 1: Planning & Setup</h2>
+            <h3>🎯 Objective: Establish Project Infrastructure</h3>
+            <div class="two-column" style="margin-top: 30px;">
+                <div>
+                    <h3>Achievements</h3>
+                    <ul>
+                        <li>Created GitHub repository</li>
+                        <li>Set up project board</li>
+                        <li>Assigned team roles</li>
+                        <li>Directory structure designed</li>
+                        <li>Docker environment prepared</li>
+                        <li>Identified libpqxx library</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Team Contributions</h3>
+                    <ul style="font-size: 1em;">
+                        <li><strong>Erfan:</strong> Repository setup, README, project board</li>
+                        <li><strong>Sevin:</strong> Docker research, PostgreSQL investigation</li>
+                        <li><strong>Rasa:</strong> C++ environment, CMake configuration</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Status:</strong> ✅ Foundation established, ready for development</p>
+            </div>
+        </div>
+        
+        <!-- Slide 11: Week 2 Progress -->
+        <div class="slide">
+            <h2>Week 2: Container Creation</h2>
+            <h3>🐳 Objective: Build Docker Infrastructure</h3>
+            <div class="two-column" style="margin-top: 30px;">
+                <div>
+                    <h3>Achievements</h3>
+                    <ul>
+                        <li>Created Dockerfile for C++ app</li>
+                        <li>docker-compose.yml configured</li>
+                        <li>PostgreSQL container ready</li>
+                        <li>CMakeLists.txt created</li>
+                        <li>Initial images pushed to Docker Hub</li>
+                        <li>Network communication established</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Team Contributions</h3>
+                    <ul style="font-size: 1em;">
+                        <li><strong>Erfan:</strong> Documentation updates, code reviews</li>
+                        <li><strong>Sevin:</strong> Docker infrastructure, docker-compose</li>
+                        <li><strong>Rasa:</strong> CMake setup, main.cpp initialization</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Status:</strong> ✅ Containers running, build system working</p>
+            </div>
+        </div>
+        
+        <!-- Slide 12: Week 3 Progress -->
+        <div class="slide">
+            <h2>Week 3: Application Development</h2>
+            <h3>💻 Objective: Implement Core Functionality</h3>
+            <div class="two-column" style="margin-top: 30px;">
+                <div>
+                    <h3>Achievements</h3>
+                    <ul>
+                        <li>libpqxx integration complete</li>
+                        <li>Database connection established</li>
+                        <li>Automatic table creation</li>
+                        <li>CRUD operations implemented</li>
+                        <li>Network communication verified</li>
+                        <li>Version v0.2-alpha released</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Team Contributions</h3>
+                    <ul style="font-size: 1em;">
+                        <li><strong>Erfan:</strong> User manual, troubleshooting docs</li>
+                        <li><strong>Sevin:</strong> Docker networking, build fixes</li>
+                        <li><strong>Rasa:</strong> Database logic, connection handling</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Status:</strong> ✅ Full database connectivity achieved</p>
+            </div>
+        </div>
+        
+        <!-- Slide 13: Week 4 Progress -->
+        <div class="slide">
+            <h2>Week 4: Testing & Final Release</h2>
+            <h3>🚀 Objective: Production-Ready System</h3>
+            <div class="two-column" style="margin-top: 30px;">
+                <div>
+                    <h3>Achievements</h3>
+                    <ul>
+                        <li>Full system testing completed</li>
+                        <li>All CRUD operations verified</li>
+                        <li>Documentation finalized</li>
+                        <li>v1.0 release tagged</li>
+                        <li>Production images on Docker Hub</li>
+                        <li>Health checks added</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Team Contributions</h3>
+                    <ul style="font-size: 1em;">
+                        <li><strong>Erfan:</strong> Release management, final docs</li>
+                        <li><strong>Sevin:</strong> Production deployment, health checks</li>
+                        <li><strong>Rasa:</strong> Testing, bug fixes, code quality</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Status:</strong> ✅ Project complete and ready for submission</p>
+            </div>
+        </div>
+        
+        <!-- Slide 14: Usage Example -->
+        <div class="slide">
+            <h2>Quick Start Guide</h2>
+            <h3>Starting the System</h3>
+            <pre style="font-size: 1.1em;">
+# Clone the repository
+git clone https://github.com/erfnkrm/cpp-finalproject-ERS
+cd cpp-finalproject-ERS
+
+# Start the database
+docker compose up db -d
+
+# Run the application
+docker compose run --rm app
+            </pre>
+            <h3 style="margin-top: 30px;">Stopping the System</h3>
+            <pre style="font-size: 1.1em;">
+# Stop all services
+docker compose down
+
+# Remove volumes (reset database)
+docker compose down -v
+            </pre>
+        </div>
+        
+        <!-- Slide 15: Key Learnings -->
+        <div class="slide">
+            <h2>Key Learnings & Best Practices</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Docker containerization</li>
+                        <li>Multi-stage builds</li>
+                        <li>Database integration with C++</li>
+                        <li>CMake build systems</li>
+                        <li>Network configuration</li>
+                        <li>Version control workflows</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Project Management</h3>
+                    <ul>
+                        <li>Team collaboration</li>
+                        <li>Agile development</li>
+                        <li>Code review processes</li>
+                        <li>Documentation practices</li>
+                        <li>Issue tracking</li>
+                        <li>Release management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Best Practice Implemented:</strong> Multi-stage Docker builds reduce image size by ~60%</p>
+            </div>
+        </div>
+        
+        <!-- Slide 16: Challenges & Solutions -->
+        <div class="slide">
+            <h2>Challenges & Solutions</h2>
+            <table>
+                <tr>
+                    <th>Challenge</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>Database not ready on startup</td>
+                    <td>Implemented health checks and retry logic with 25 attempts</td>
+                </tr>
+                <tr>
+                    <td>Container networking issues</td>
+                    <td>Created dedicated bridge network (sis_net) with proper DNS</td>
+                </tr>
+                <tr>
+                    <td>CMakeLists.txt not found</td>
+                    <td>Restructured root directory and fixed Dockerfile COPY paths</td>
+                </tr>
+                <tr>
+                    <td>Large Docker image size</td>
+                    <td>Multi-stage builds separating build and runtime dependencies</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Slide 17: Project Statistics -->
+        <div class="slide">
+            <h2>Project Statistics</h2>
+            <div class="center" style="margin: 40px 0;">
+                <div class="two-column">
+                    <div class="highlight">
+                        <h3 style="color: #667eea;">📁 Project Structure</h3>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>5</strong> Core C++ modules</p>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>2</strong> Docker containers</p>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>5</strong> CRUD operations</p>
+                    </div>
+                    <div class="highlight">
+                        <h3 style="color: #764ba2;">🚀 Development Metrics</h3>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>4</strong> Weeks duration</p>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>3</strong> Team members</p>
+                        <p style="font-size: 1.3em; margin: 15px 0;"><strong>1.0</strong> Version released</p>
+                    </div>
+                </div>
+            </div>
+            <div class="center" style="margin-top: 40px;">
+                <span class="tech-badge" style="font-size: 1.2em;">✅ Production Ready</span>
+                <span class="tech-badge" style="font-size: 1.2em;">✅ Docker Hub Published</span>
+                <span class="tech-badge" style="font-size: 1.2em;">✅ Fully Documented</span>
+            </div>
+        </div>
+        
+        <!-- Slide 18: Contact & Resources -->
+        <div class="slide">
+            <h2>Resources & Links</h2>
+            <div style="margin: 40px 0;">
+                <h3>📚 Documentation</h3>
+                <ul style="font-size: 1.2em;">
+                    <li>README.md - Project overview and quick start</li>
+                    <li>INSTALL.md - Detailed installation instructions</li>
+                    <li>MANUAL.md - User manual and usage guide</li>
+                    <li>Weekly Reports - Week 1-4 progress documentation</li>
+                </ul>
+                
+                <h3 style="margin-top: 40px;">🔗 Repository</h3>
+                <div class="highlight">
+                    <p style="font-size: 1.3em;">GitHub: <code>erfnkrm/cpp-finalproject-ERS</code></p>
+                </div>
+                
+                <h3 style="margin-top: 40px;">🐳 Docker Hub</h3>
+                <div class="highlight">
+                    <p style="font-size: 1.2em;">
+                        <code>RasaDarabi-stu/sis-project-postgres:latest</code><br>
+                        <code>RasaDarabi-stu/sis-project-app:latest</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 19: Acknowledgments -->
+        <div class="slide">
+            <h2>Acknowledgments</h2>
+            <div class="center" style="margin: 60px 0;">
+                <h3 style="font-size: 2em; color: #667eea;">Thank You!</h3>
+                <p style="font-size: 1.5em; margin: 30px 0;">Special thanks to</p>
+                <p style="font-size: 1.8em; color: #764ba2;"><strong>Mr. Osman Selvi</strong></p>
+                <p style="font-size: 1.3em; margin: 20px 0;">System Programming Course Instructor</p>
+                <p style="font-size: 1.2em; color: #666;">Fenerbahçe University</p>
+            </div>
+            <div class="highlight" style="margin-top: 60px;">
+                <p class="center" style="font-size: 1.2em;">This project has been an invaluable opportunity to apply distributed systems, containerization, and collaborative development concepts.</p>
+            </div>
+            <div class="center" style="margin-top: 80px;">
+                <p style="font-size: 2em; color: #764ba2;">Questions?</p>
+                <p style="font-size: 1.5em; color: #666; margin-top: 30px;">Team ERS</p>
+                <p style="font-size: 1.2em; color: #999;">Erfan Karimi • Sevin Tayfehaliverdi • Rasa Darabi Purshiraz</p>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
