@@ -26,8 +26,8 @@ Choose one of the following container runtimes:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/erfnkrm/cpp-finalproject-ERS
-   cd cpp-finalproject-ERS
+   git clone https://github.com/erfnkrm/Student-Information-System/
+   cd Student-Information-System
    ```
 
 2. **Start the database:**
