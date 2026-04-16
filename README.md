@@ -1,5 +1,5 @@
-# cpp-finalproject-ERS
-Final C++ project for the System Programming course, instructed by Osman Selvi.
+# Student-Information-System
+Final C++ project for the System Programming course.
 
 ## Project Objective
 The goal of this project is to develop a distributed Student Information System using Ubuntu, Git, GitHub, and Docker/Podman. The system manages student records through a C++ application connected to a PostgreSQL database.
@@ -7,7 +7,7 @@ The goal of this project is to develop a distributed Student Information System 
 ---
 
 ## System Components
-- **Application Container:** A custom C++ application for saving and managing student records.
+- **Application Container:** A custom C++ application utilizing strict memory management and pointer arithmetic for saving and managing student records.
 - **Database Container:** A PostgreSQL database for persistent data storage.
 - **Networking:** Private network communication between containers.
 
@@ -21,19 +21,7 @@ The goal of this project is to develop a distributed Student Information System 
 - Delete student records
 - Stable database transaction management via libpqxx
 - Comprehensive input validation
-
----
-
-## Team Roles
-- **Erfan Karimi** (Project Manager): GitHub management, reporting, and documentation.
-- **Rasa Darabi Purshiraz** (DevOps): Docker infrastructure, CI/CD, and image management.
-- **Sevin Tayfehaliverdi** (C++ Developer): Application logic, database connection, and testing.
-
----
-
-## Docker Hub Repositories (Mandatory)
-- PostgreSQL Image: `[RasaDarabi-stu]/sis-project-postgres:latest`
-- Application Image: `[RasaDarabi-stu]/sis-project-app:latest`
+- Continuous version control and project documentation via GitHub
 
 ---
 
@@ -54,11 +42,20 @@ This project consists of two main Docker/Podman containers:
 ---
 
 ## Configuration
-The system uses the following default credentials in `docker-compose.yml`:
-- **Database:** `sis_db`
-- **User:** `sis_user`
-- **Password:** `sis_pass`
-- **Port:** `5432`
+For public use and security best practices, sensitive credentials are not hardcoded. The system uses a `.env` file to manage environment variables for the containers securely.
+
+1. Create a `.env` file in the root directory of the project.
+2. Add your configuration variables as shown below:
+
+```env
+# Database Configuration
+POSTGRES_DB=sis_db
+POSTGRES_USER=sis_user
+POSTGRES_PASSWORD=your_secure_password_here
+POSTGRES_PORT=5432
+```
+
+> **Note:** Ensure your `.env` file is added to your `.gitignore` file so your credentials are never accidentally pushed to a public repository.
 
 ---
 
@@ -107,7 +104,7 @@ The application will automatically connect to the database and initialize the ta
 ---
 
 ## Menu Options
-```
+```text
 === Student Information System ===
 1) Add student
 2) List students
